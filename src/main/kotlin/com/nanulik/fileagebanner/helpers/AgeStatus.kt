@@ -1,4 +1,4 @@
-package com.nanepetrosyan.fileagebanner.helpers
+package com.nanulik.fileagebanner.helpers
 
 /**
  * @author Nane Petrosyan

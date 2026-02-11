@@ -1,7 +1,8 @@
-package com.nanepetrosyan.fileagebanner.helpers;
+package com.nanulik.fileagebanner.helpers
 
 import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.editor.Editor
+import com.intellij.openapi.editor.EditorKind
 import com.intellij.openapi.editor.event.EditorFactoryEvent
 import com.intellij.openapi.editor.event.EditorFactoryListener
 import com.intellij.openapi.editor.ex.EditorEx
@@ -9,7 +10,7 @@ import com.intellij.openapi.fileEditor.FileDocumentManager
 import com.intellij.openapi.util.Key
 import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.openapi.editor.colors.EditorColorsManager
-import com.nanepetrosyan.fileagebanner.services.GitFileAgeService
+import com.nanulik.fileagebanner.services.GitFileAgeService
 import java.awt.BorderLayout
 import javax.swing.JLabel
 import javax.swing.JPanel
@@ -24,6 +25,8 @@ class FileAgeBannerEditorListener : EditorFactoryListener {
 
     override fun editorCreated(event: EditorFactoryEvent) {
         val editor = event.editor
+        val editorEx = editor as? EditorEx ?: return
+        if (editorEx.editorKind != EditorKind.MAIN_EDITOR) return
         val project = editor.project ?: return
 
         val file = getFile(editor) ?: return

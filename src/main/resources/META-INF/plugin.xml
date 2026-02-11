@@ -8,6 +8,6 @@
     <depends>Git4Idea</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <editorFactoryListener implementation="com.nanepetrosyan.fileagebanner.helpers.FileAgeBannerEditorListener"/>
+        <editorFactoryListener implementation="com.nanulik.fileagebanner.helpers.FileAgeBannerEditorListener"/>
     </extensions>
 </idea-plugin>

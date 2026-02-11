@@ -1,4 +1,4 @@
-package com.nanepetrosyan.fileagebanner.services
+package com.nanulik.fileagebanner.services
 
 import com.intellij.execution.configurations.GeneralCommandLine
 import com.intellij.execution.process.CapturingProcessHandler
@@ -6,11 +6,12 @@ import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.components.Service
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.vfs.VirtualFile
-import com.nanepetrosyan.fileagebanner.helpers.AgeStatus
+import com.nanulik.fileagebanner.helpers.AgeStatus
 import git4idea.repo.GitRepositoryManager
 import git4idea.config.GitExecutableManager
 import java.time.Instant
 import java.util.concurrent.ConcurrentHashMap
+import kotlin.math.max
 
 /**
  * @author Nane Petrosyan
@@ -65,7 +66,7 @@ class GitFileAgeService(private val project: Project) {
 
         val now = Instant.now()
         val then = Instant.ofEpochSecond(epochSeconds)
-        val days = kotlin.math.max(0, (now.epochSecond - then.epochSecond) / 86400)
+        val days = max(0, (now.epochSecond - then.epochSecond) / 86400)
 
         val status = AgeStatus.fromDays(days)
         return "${status.label}  •  last updated ${status.human(days)}"

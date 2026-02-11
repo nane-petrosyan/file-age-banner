@@ -1,9 +1,10 @@
-package com.nanepetrosyan.fileagebanner.helpers
+package com.nanulik.fileagebanner.helpers
 
 import com.intellij.openapi.editor.Editor
 import com.intellij.openapi.editor.markup.TextAttributes
 import com.intellij.openapi.editor.colors.EditorColorsManager
 import com.intellij.openapi.editor.EditorCustomElementRenderer
+import com.intellij.openapi.editor.Inlay
 import java.awt.*
 
 /**
@@ -14,20 +15,20 @@ class FileAgeBannerRenderer(
     private val text: String
 ) : EditorCustomElementRenderer {
 
-    override fun calcWidthInPixels(inlay: com.intellij.openapi.editor.Inlay<*>): Int {
+    override fun calcWidthInPixels(inlay: Inlay<*>): Int {
         val editor = inlay.editor
         val fm = editor.contentComponent.getFontMetrics(getFont(editor))
         return fm.stringWidth(text) + 16
     }
 
-    override fun calcHeightInPixels(inlay: com.intellij.openapi.editor.Inlay<*>): Int {
+    override fun calcHeightInPixels(inlay: Inlay<*>): Int {
         val editor = inlay.editor
         val fm = editor.contentComponent.getFontMetrics(getFont(editor))
         return fm.height + 10
     }
 
     override fun paint(
-        inlay: com.intellij.openapi.editor.Inlay<*>,
+        inlay: Inlay<*>,
         g: Graphics,
         targetRegion: Rectangle,
         textAttributes: TextAttributes
