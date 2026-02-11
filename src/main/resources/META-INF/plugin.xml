@@ -1,15 +1,13 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
-    <id>com.github.nanepetrosyan.fileagebanner</id>
-    <name>file-age-banner</name>
-    <vendor>nane-petrosyan</vendor>
+    <id>com.nanulik.fileagebanner</id>
+    <name>File Age Banner</name>
+    <vendor>Nane Petrossian</vendor>
 
     <depends>com.intellij.modules.platform</depends>
-
-    <resource-bundle>messages.MyBundle</resource-bundle>
+    <depends>Git4Idea</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow factoryClass="com.github.nanepetrosyan.fileagebanner.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
-        <postStartupActivity implementation="com.github.nanepetrosyan.fileagebanner.startup.MyProjectActivity" />
+        <editorFactoryListener implementation="com.nanepetrosyan.fileagebanner.helpers.FileAgeBannerEditorListener"/>
     </extensions>
 </idea-plugin>

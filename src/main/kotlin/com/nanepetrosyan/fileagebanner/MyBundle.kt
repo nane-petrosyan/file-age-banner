@@ -1,4 +1,4 @@
-package com.github.nanepetrosyan.fileagebanner
+package com.nanepetrosyan.fileagebanner
 
 import com.intellij.DynamicBundle
 import org.jetbrains.annotations.NonNls
