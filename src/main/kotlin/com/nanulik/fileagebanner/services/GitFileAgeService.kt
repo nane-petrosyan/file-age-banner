@@ -10,7 +10,6 @@ import com.nanulik.fileagebanner.helpers.AgeStatus
 import git4idea.repo.GitRepositoryManager
 import git4idea.config.GitExecutableManager
 import java.time.Instant
-import java.util.concurrent.ConcurrentHashMap
 import kotlin.math.max
 
 /**
@@ -20,25 +19,9 @@ import kotlin.math.max
 @Service(Service.Level.PROJECT)
 class GitFileAgeService(private val project: Project) {
 
-    private data class CacheEntry(val epochSeconds: Long?, val cachedAtMs: Long)
-
-    private val cache = ConcurrentHashMap<String, CacheEntry>()
-    private val ttlMs = 5 * 60 * 1000L
-
     fun requestUpdate(file: VirtualFile, onResult: (String) -> Unit) {
-        val key = file.path
-        val now = System.currentTimeMillis()
-
-        cache[key]?.let { entry ->
-            if (now - entry.cachedAtMs <= ttlMs) {
-                onResult(format(entry.epochSeconds))
-                return
-            }
-        }
-
         ApplicationManager.getApplication().executeOnPooledThread {
             val epoch = getLastCommitEpochSeconds(file)
-            cache[key] = CacheEntry(epoch, System.currentTimeMillis())
             onResult(format(epoch))
         }
     }
