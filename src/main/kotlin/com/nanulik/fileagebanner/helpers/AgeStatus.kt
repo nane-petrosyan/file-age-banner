@@ -9,8 +9,8 @@ enum class AgeStatus(val label: String) {
     FRESH("fresh 🌱"),
     OK("stable 🧘"),
     DUSTY("dusty 📦"),
-    ANCIENT("ancient 🗿"),
-    GERIATRIC("geriatric 🦕");
+    GERIATRIC("geriatric 🦕"),
+    ANCIENT("ancient 🗿");
 
     companion object {
         fun fromDays(days: Long): AgeStatus = when {
@@ -18,8 +18,8 @@ enum class AgeStatus(val label: String) {
             days < 7 -> FRESH
             days < 30 -> OK
             days < 90 -> DUSTY
-            days < 365 -> ANCIENT
-            else -> GERIATRIC
+            days < 365 -> GERIATRIC
+            else -> ANCIENT
         }
     }
 

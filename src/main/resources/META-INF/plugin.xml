@@ -10,4 +10,12 @@
     <extensions defaultExtensionNs="com.intellij">
         <editorFactoryListener implementation="com.nanulik.fileagebanner.helpers.FileAgeBannerEditorListener"/>
     </extensions>
+    <description><![CDATA[
+<p>Adds a small banner at the top of each file showing when it was last updated in Git.</p>
+
+<ul>
+  <li>Displays time since last commit</li>
+  <li>Maps files to fun age statuses (👶 newborn → 🦕 geriatric)</li>
+</ul>
+]]></description>
 </idea-plugin>

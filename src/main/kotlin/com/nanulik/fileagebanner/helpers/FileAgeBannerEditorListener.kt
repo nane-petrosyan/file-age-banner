@@ -32,15 +32,13 @@ class FileAgeBannerEditorListener : EditorFactoryListener {
         val file = getFile(editor) ?: return
         if (file.isDirectory) return
 
-        // Avoid duplicates
         if (editor.getUserData(HEADER_LABEL_KEY) != null) return
 
         val label = ensureHeader(editor) ?: return
 
-        // Compute git age in background; update UI on EDT
         GitFileAgeService.getInstance(project).requestUpdate(file) { text ->
             ApplicationManager.getApplication().invokeLater {
-                // Editor might be already released; just be defensive
+
                 val current = editor.getUserData(HEADER_LABEL_KEY) ?: return@invokeLater
                 current.text = text
             }
